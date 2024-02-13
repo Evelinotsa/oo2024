@@ -20,6 +20,20 @@ public class Main {
         System.out.println(hinnang2);
         prindiForTsykkel("Pikk sõna");
         prindiForTsykkel("Lyh");
+
+        //Kodutöö:
+        boolean vastus1 = paarisPaaritu(4);
+        System.out.println(vastus1);
+        boolean vastus2 = paarisPaaritu(7);
+        System.out.println(vastus2);
+
+        String pikem1 = leiaPikem("kass", "hobune");
+        System.out.println(pikem1);
+        String pikem2 = leiaPikem("kala", "uss");
+        System.out.println(pikem2);
+
+        arvudVahemikus(2, 9);
+        arvudVahemikus(7, 10);
     }
 
     private static double arvutaTaksoMaksumus(int tunnid) {
@@ -37,6 +51,24 @@ public class Main {
     private static void prindiForTsykkel(String tahtedeArv) {
         for (int i = 0; i < tahtedeArv.length(); i++) {
             System.out.println(i);
+        }
+    }
+
+    private static boolean paarisPaaritu(int arv) {
+        return arv % 2 == 0;
+    }
+
+    private static String leiaPikem(String sona1, String sona2) {
+        if (sona1.length() > sona2.length()) {
+            return sona1;
+        } else {
+            return sona2;
+        }
+    }
+
+    private static void arvudVahemikus(int algus, int lopp) {
+        for (int j = algus + 1; j <= lopp - 1; j++) {
+            System.out.println(j);
         }
     }
 }
