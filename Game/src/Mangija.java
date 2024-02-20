@@ -7,8 +7,8 @@ public class Mangija extends Tegelane implements JuhuslikKoordinaat{
     Soiduk soiduk;
 
     public Mangija(Random random, int kaardiKorgus, int kaardiLaius) {
-        xCoord = saaKoordinaat(random, kaardiKorgus); // initsialiseerin (annan esimest korda väärtuse)
-        yCoord = saaKoordinaat(random, kaardiLaius);
+        xCoord = saaKoordinaat(random, kaardiLaius); // initsialiseerin (annan esimest korda väärtuse)
+        yCoord = saaKoordinaat(random, kaardiKorgus);
         symbol = 'x';
         suund = Suund.YLES;
     }

@@ -11,8 +11,10 @@ public class Main {
 
         //klass, saab enda sisse terve hunniku funktsioone ja muutujaid
         Random random = new Random();
+        System.out.println(random);
 
         Maailm maailm = new Maailm(5, 10);
+        System.out.println(maailm);
 
         Mangija mangija = new Mangija(random, maailm.kaardiKorgus, maailm.kaardiLaius);
         Draakon draakon = new Draakon(random, maailm.kaardiKorgus, maailm.kaardiLaius);

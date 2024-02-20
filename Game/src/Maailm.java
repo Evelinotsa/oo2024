@@ -11,9 +11,9 @@ public class Maailm {
 
     public void prindiKaart(List<Tegelane> tegelased, List<Ese> esemed) {
         for (int y = 0; y < kaardiKorgus; y++) {
-            char symbol = 0;
             for (int x = 0; x < kaardiLaius; x++) {
-                if (y == 0 || y == kaardiKorgus - 1) {
+                char symbol;
+                if (y == 0 || y == kaardiKorgus -1) {
                     symbol = '-';
                 } else if (x == 0 || x == kaardiLaius - 1) {
                     symbol = '|';
@@ -29,10 +29,13 @@ public class Maailm {
                             symbol = t.symbol;
                         }
                     }
+                    for (int i = 0; i < esemed.size(); i++) {
+                        esemed.get(i);
+                    }
                 }
+                System.out.print(symbol);
             }
-            System.out.print(symbol);
+            System.out.println();
         }
-        System.out.println();
     }
 }
