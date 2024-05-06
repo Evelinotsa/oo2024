@@ -40,8 +40,8 @@ public class NumbriteController {
     @GetMapping("numbrid/summa")
     public int numbriteSumma() {
         int sum = 0;
-        for (int num : numbrid) {
-            sum += num;
+        for (int number : numbrid) {
+            sum += number;
         }
         return sum;
     }

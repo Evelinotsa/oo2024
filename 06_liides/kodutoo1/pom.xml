@@ -12,7 +12,7 @@
 	<artifactId>kodutoo1</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>kodutoo1</name>
-	<description>OOP Spring Salatiprojekt</description>
+	<description>OOP Spring kodutoo1</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>

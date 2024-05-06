@@ -8,30 +8,44 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 public class LoomaEntityController {
-    List<LoomaEntity> loomad = new ArrayList<>();
+    LoomaRepository loomaRepository;
+
+    public LoomaEntityController(LoomaRepository loomaRepository){
+        this.loomaRepository = loomaRepository;
+    }
 
     @GetMapping("loomad")
     public List<LoomaEntity> saaLoomad(){
-        return loomad;
+        return loomaRepository.findAll();
     }
 
+    //@RequestParam
     //localhost:8080/api/loomad?nimi=lõvi&populatsioon=32000&keskmineEluiga=15&keskmineKaal=130
-    @PostMapping("loomad")
-    public List<LoomaEntity> lisaLoomad(
-            @RequestParam String nimi,
-            @RequestParam int populatsioon,
-            @RequestParam int keskmineEluiga,
-            @RequestParam int keskmineKaal
-    ){
-        LoomaEntity loom = new LoomaEntity(nimi, populatsioon, keskmineEluiga, keskmineKaal);
-        loomad.add(loom);
-        return loomad;
+    @PostMapping("loomad/{nimi}/{populatsioon}/{keskmineEluiga}/{keskmineKaal}")
+    public List<LoomaEntity> lisaLoom(
+            @PathVariable String nimi,
+            @PathVariable int populatsioon,
+            @PathVariable int keskmineEluiga,
+            @PathVariable int keskmineKaal
+    ) {
+        LoomaEntity toiduaine = new LoomaEntity(nimi, populatsioon, keskmineEluiga, keskmineKaal);
+        loomaRepository.save(toiduaine);
+        return loomaRepository.findAll();
     }
 
-    @DeleteMapping("loomad/{index}")
-    public List<LoomaEntity> kustutaLoom(@PathVariable int index){
-        loomad.remove(index);
-        return loomad;
+    @PostMapping("loomad")
+    public List<LoomaEntity> lisaLoom(@RequestBody LoomaEntity loomaEntity) {
+        if (loomaEntity.getPopulatsioon() + loomaEntity.getKeskmineEluiga() + loomaEntity.getKeskmineKaal() > 100) {
+            return loomaRepository.findAll();
+        }
+        loomaRepository.save(loomaEntity);
+        return loomaRepository.findAll();
+    }
+
+    @DeleteMapping("loomad/{nimi}")
+    public List<LoomaEntity> kustutaLoom(@PathVariable String nimi){
+        loomaRepository.deleteById(nimi);
+        return loomaRepository.findAll();
     }
 
     @PutMapping("loomad/{index}/{nimi}/{populatsioon}/{keskmineEluiga}/{keskmineKaal}")
@@ -43,7 +57,7 @@ public class LoomaEntityController {
             @PathVariable int keskmineKaal
     ){
         LoomaEntity loom = new LoomaEntity(nimi, populatsioon, keskmineEluiga, keskmineKaal);
-        loomad.add(index, loom);
-        return loomad;
+        loomaRepository.save(loom);
+        return loomaRepository.findAll();
     }
 }
