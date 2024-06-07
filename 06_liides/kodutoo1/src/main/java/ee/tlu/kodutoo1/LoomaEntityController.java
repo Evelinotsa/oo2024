@@ -7,6 +7,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins = "http://localhost:3000")
 public class LoomaEntityController {
     LoomaRepository loomaRepository;
 
@@ -35,9 +36,6 @@ public class LoomaEntityController {
 
     @PostMapping("loomad")
     public List<LoomaEntity> lisaLoom(@RequestBody LoomaEntity loomaEntity) {
-        if (loomaEntity.getPopulatsioon() + loomaEntity.getKeskmineEluiga() + loomaEntity.getKeskmineKaal() > 100) {
-            return loomaRepository.findAll();
-        }
         loomaRepository.save(loomaEntity);
         return loomaRepository.findAll();
     }
