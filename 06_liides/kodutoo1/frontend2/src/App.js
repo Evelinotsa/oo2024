@@ -9,6 +9,16 @@ function App() {
   const populatsioonRef = useRef();
   const eluigaRef = useRef();
   const kaalRef = useRef();
+  const [loomapood, setLoomapood] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:8080/api/loomad")
+      .then((response) => response.json())
+      .then((json) => {
+        setLoomapood(json);
+      });
+  }, []);
+
   //uef
   useEffect(() => {
     fetch("http://localhost:8080/api/loomad")
@@ -25,12 +35,19 @@ function App() {
     })
       .then((response) => response.json())
       .then((json) => {
+        if (json.error) {
+          alert("Loom on hetkel loomapoes!");
+          return;
+        }
         setKogus(json.length);
         setLooma(json);
       });
   }
 
   function lisa() {
+    if (nimiRef.current.value.trim() === "") {
+      return;
+    }
     const loom = {
       nimetus: nimiRef.current.value,
       populatsioon: populatsioonRef.current.value,
@@ -46,6 +63,43 @@ function App() {
       .then((json) => {
         setKogus(json.length);
         setLooma(json);
+      });
+  }
+
+  function kustutaLP(primaarivoti) {
+    fetch("http://localhost:8080/loomapood/" + primaarivoti, {
+      method: "DELETE",
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        if (json.error) {
+          alert("Loom on kasutusel!"); // toastify
+          return;
+        }
+        setLoomapood(json);
+      });
+  }
+
+  const lpNimiRef = useRef();
+  const kogusRef = useRef();
+
+  function lisaLP() {
+    const lisatavLP = {
+      loom: { nimetus: lpNimiRef.current.value },
+      kogus: kogusRef.current.value,
+    };
+    fetch("http://localhost:8080/loomapood", {
+      method: "POST",
+      body: JSON.stringify(lisatavLP),
+      headers: { "Content-Type": "application/json" },
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        fetch("http://localhost:8080/loomapood")
+          .then((response) => response.json())
+          .then((json) => {
+            setLoomapood(json);
+          });
       });
   }
 
@@ -67,6 +121,18 @@ function App() {
           {l.nimetus} <br /> populatsioon:{l.populatsioon} keskmine eluiga:
           {l.keskmineEluiga} keskmine kaal:{l.keskmineKaal}{" "}
           <button onClick={() => kustuta(l.nimetus)}>x</button>{" "}
+        </div>
+      ))}
+      <hr />
+      <label>Looma nimetus (täpne nimetus andmebaasist)</label> <br />
+      <input ref={lpNimiRef} type="text" /> <br />
+      <label>Kogus</label> <br />
+      <input ref={kogusRef} type="text" /> <br />
+      <button onClick={() => lisaLP()}>Sisesta</button> <br />
+      {loomapood.map((lp) => (
+        <div>
+          {lp.id} | {lp.loom?.nimetus} | {lp.loom?.keskmineEluiga} | {lp.kogus}{" "}
+          | <button onClick={() => kustutaLP(lp.id)}>x</button>{" "}
         </div>
       ))}
     </div>

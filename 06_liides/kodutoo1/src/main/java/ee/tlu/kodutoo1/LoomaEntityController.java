@@ -58,4 +58,14 @@ public class LoomaEntityController {
         loomaRepository.save(loom);
         return loomaRepository.findAll();
     }
+
+    @GetMapping("loomad-populatsioon-min/{minPopulatsioon}")
+    public List<LoomaEntity> loomadMinPopulatsioon(@PathVariable int minPopulatsioon) {
+        return loomaRepository.findAllByPopulatsioonGreaterThan(minPopulatsioon);
+    }
+
+    @GetMapping("loomad-keskmineeluiga/{min}/{max}")
+    public List<LoomaEntity> loomadKeskmineEluiga(@PathVariable int min,@PathVariable int max) {
+        return loomaRepository.findAllByKeskmineEluigaBetween(min, max);
+    }
 }
