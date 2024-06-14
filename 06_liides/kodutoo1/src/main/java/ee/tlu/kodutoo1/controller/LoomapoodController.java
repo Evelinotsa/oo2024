@@ -1,11 +1,11 @@
-package ee.tlu.kodutoo1;
+package ee.tlu.kodutoo1.controller;
 
+import ee.tlu.kodutoo1.entity.Loomapood;
+import ee.tlu.kodutoo1.repository.LoomapoodRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000/")

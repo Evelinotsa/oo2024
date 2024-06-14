@@ -1,10 +1,10 @@
-package ee.tlu.kodutoo1;
+package ee.tlu.kodutoo1.entity;
 
+import ee.tlu.kodutoo1.entity.LoomaEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.boot.autoconfigure.web.WebProperties;
 
 @AllArgsConstructor
 @Getter

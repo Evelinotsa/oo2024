@@ -1,8 +1,9 @@
-package ee.tlu.kodutoo1;
+package ee.tlu.kodutoo1.controller;
 
+import ee.tlu.kodutoo1.entity.LoomaEntity;
+import ee.tlu.kodutoo1.repository.LoomaRepository;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController

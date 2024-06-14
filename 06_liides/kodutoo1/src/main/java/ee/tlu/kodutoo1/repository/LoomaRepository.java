@@ -1,5 +1,6 @@
-package ee.tlu.kodutoo1;
+package ee.tlu.kodutoo1.repository;
 
+import ee.tlu.kodutoo1.entity.LoomaEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package ee.tlu.kodutoo1;
+package ee.tlu.kodutoo1.controller;
 
 import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.web.bind.annotation.*;

@@ -1,10 +1,9 @@
-package ee.tlu.salat;
+package ee.tlu.salat.controller;
 
-import org.hibernate.metamodel.mapping.internal.EntityRowIdMappingImpl;
-import org.springframework.beans.factory.annotation.Autowired;
+import ee.tlu.salat.entity.ToiduaineEntity;
+import ee.tlu.salat.repository.ToiduaineRepository;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController

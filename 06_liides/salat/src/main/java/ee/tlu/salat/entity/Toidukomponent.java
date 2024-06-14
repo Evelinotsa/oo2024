@@ -1,14 +1,13 @@
-package ee.tlu.salat;
+package ee.tlu.salat.entity;
 
 // koosneb toiduainest ja temaga seotud kogusest toidus ees
 // klassikomplekt -> kartul+omadused ja mitu grammi
 
+import ee.tlu.salat.entity.ToiduaineEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 @AllArgsConstructor
 @Getter
